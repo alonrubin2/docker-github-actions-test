@@ -1,8 +1,23 @@
-name: testing-github-actions
+name: learn-github-actions
 on: [push]
 jobs:
-  check-code-quality:
+  check-bats-version:
     runs-on: ubuntu-latest
     steps:
-      - uses: actrions/checkout@v2
-      - 
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: npm install -g bats
+      - run: bats -v
+  print-after-bats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print a greeting
+        env:
+          BEGIN_GREETING: Hi there! My name is
+          FIRST_NAME: Alon
+          MIDDLE_NAME: Ish
+          LAST_NAME: Rubin
+        run: |
+          echo $BEGIN_GREETING $FIRST_NAME $MIDDLE_NAME $LAST_NAME.
