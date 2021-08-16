@@ -30,6 +30,6 @@ jobs:
     - run: npm run build --if-present
     - run: npm test
 
-    - name: buidl and push docker image
-      run: |
+    # - name: buidl and push docker image
+    #   run: |
         
