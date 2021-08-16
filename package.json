@@ -27,5 +27,15 @@
     "jest": "^24.9.0",
     "nodemon": "^1.19.2",
     "prettier": "^1.18.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alonrubin2/docker-github-actions-test.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/alonrubin2/docker-github-actions-test/issues"
+  },
+  "homepage": "https://github.com/alonrubin2/docker-github-actions-test#readme",
+  "description": ""
 }
