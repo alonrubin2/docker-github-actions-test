@@ -5,10 +5,8 @@ name: Node.js CI
 
 on: [push]
 
-
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -17,18 +15,20 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: sudo apt-get install python -y
-    - run: npm install
-    - run: npm ci
-    - run: npm run build --if-present
-    # - run: npm test
-
-    # - name: buidl and push docker image
-    #   run: |
-        
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: sudo apt-get install python -y
+      - run: npm install
+      - run: npm ci
+      - run: npm run build --if-present
+      - name: docker cuild and push
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: alonru/getting-started
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
